@@ -1,0 +1,73 @@
+
+services:
+  eureka-server:
+    build: ../eurekaserver
+    ports:
+      - "9090:9090"
+    networks:
+      - micro-net
+
+  gateway-server:
+    build: ../gatewayserver
+    ports:
+      - "8085:8085"
+    depends_on:
+      - eureka-server
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:9090/eureka/
+    networks:
+      - micro-net
+
+
+  order-service:
+    build: ../order-service
+    depends_on:
+      - eureka-server
+
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/order_db
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:9090/eureka
+
+
+    networks:
+      - micro-net
+
+  inventory-service:
+    build: ../inventory-service
+    depends_on:
+      - eureka-server
+
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/inventory_db
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:9090/eureka
+    networks:
+      - micro-net
+
+
+  product-service:
+    build: ../product-service
+    depends_on:
+      - eureka-server
+
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/product_db
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:9090/eureka
+    networks:
+      - micro-net
+
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    networks:
+      - micro-net
+
+
+
+networks:
+  micro-net:
