@@ -1,0 +1,88 @@
+@use "../../styles/variable.scss" as *;
+
+.login {
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #f5f7f5;
+
+  &__card {
+    width: 400px;
+    padding: 40px;
+
+    background: $white;
+    border-radius: 12px;
+
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.12);
+
+    h1 {
+      text-align: center;
+      color: $primary-color;
+      margin-bottom: 10px;
+    }
+
+    > p {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #666;
+    }
+  }
+
+  &__field {
+    margin-bottom: 20px;
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+
+      border: 1px solid #ccc;
+      border-radius: 6px;
+
+      font-size: 15px;
+
+      &:focus {
+        outline: none;
+        border-color: $primary-color;
+      }
+    }
+  }
+
+  button {
+    width: 100%;
+    padding: 13px;
+
+    border: none;
+    border-radius: 6px;
+
+    background: $primary-color;
+    color: $white;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    &:hover {
+      background: $secondary-color;
+    }
+  }
+
+  &__register {
+    margin-top: 20px;
+
+    span {
+      color: $primary-color;
+      font-weight: 600;
+      cursor: pointer;
+    }
+  }
+}
