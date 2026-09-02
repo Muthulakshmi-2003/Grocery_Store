@@ -16,6 +16,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @Tag(
         name = "CRUD REST APIs for Online Grocery Store for Order-Service",
@@ -204,6 +206,13 @@ public class OrderController {
         orderService.delete(id);
         return ResponseEntity.ok("Order Deleted Successfully!!");
 
+    }
+
+    @GetMapping("/customer/{customerId}")
+    public List<OrderResponse> getOrdersByCustomer(
+            @PathVariable Long customerId) {
+
+        return orderService.getOrdersByCustomer(customerId);
     }
 
 

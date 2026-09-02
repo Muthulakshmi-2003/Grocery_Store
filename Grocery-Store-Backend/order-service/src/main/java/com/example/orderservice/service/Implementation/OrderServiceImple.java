@@ -156,7 +156,7 @@ public class OrderServiceImple implements OrderService {
                         .toList();
 
         return new OrderResponse(
-                order.getId(),
+                order.getOrderId(),
                 order.getCustomerId(),
                 order.getStatus(),
                 order.getOrderTotal(),
@@ -171,5 +171,9 @@ public class OrderServiceImple implements OrderService {
 
         orderRepository.delete(order);
 
+    }
+
+    public List<OrderResponse> getOrdersByCustomer(Long customerId) {
+        return orderRepository.findByCustomerId(customerId);
     }
 }

@@ -1,10 +1,9 @@
 package com.example.authservice.controller;
 
-import com.example.authservice.dto.LoginRequest;
-import com.example.authservice.dto.LoginResponse;
-import com.example.authservice.dto.RegisterRequest;
+import com.example.authservice.dto.*;
 import com.example.authservice.service.AuthService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -31,6 +30,28 @@ public class AuthController {
 
         return ResponseEntity.ok(
                 authService.login(request)
+        );
+    }
+
+    @GetMapping("/profile")
+    public ResponseEntity<ProfileResponse> getProfile(
+            Authentication authentication) {
+
+        return ResponseEntity.ok(
+                authService.getProfile(authentication.getName())
+        );
+    }
+
+    @PutMapping("/profileupdate")
+    public ResponseEntity<ProfileResponse> updateProfile(
+            @RequestBody UpdateProfileRequest request,
+            Authentication authentication
+    ) {
+
+        String email = authentication.getName();
+
+        return ResponseEntity.ok(
+                authService.updateProfile(email, request)
         );
     }
 }

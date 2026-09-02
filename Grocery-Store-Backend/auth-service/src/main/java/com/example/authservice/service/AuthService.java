@@ -1,8 +1,6 @@
 package com.example.authservice.service;
 
-import com.example.authservice.dto.LoginRequest;
-import com.example.authservice.dto.LoginResponse;
-import com.example.authservice.dto.RegisterRequest;
+import com.example.authservice.dto.*;
 import com.example.authservice.entity.User;
 import com.example.authservice.exception.EmailAlreadyExistException;
 import com.example.authservice.exception.InvalidEmailPassException;
@@ -75,6 +73,38 @@ public class AuthService {
                 token,
                 user.getEmail(),
                 isAdmin
+        );
+    }
+
+    public ProfileResponse getProfile(String email) {
+
+        User user = userRepository
+                .findByEmail(email)
+                .orElseThrow(() ->
+                        new RuntimeException("User not found"));
+
+        return new ProfileResponse(
+                user.getName(),
+                user.getEmail(),
+                user.getNumber()
+        );
+    }
+
+    public ProfileResponse updateProfile(String email, UpdateProfileRequest request) {
+
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        user.setName(request.getName());
+        user.setNumber(request.getPhone());
+        user.setEmail(request.getEmail());
+
+        userRepository.save(user);
+
+        return new ProfileResponse(
+                user.getName(),
+                user.getEmail(),
+                user.getNumber()
         );
     }
 
