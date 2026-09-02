@@ -1,0 +1,96 @@
+.edit-profile {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 50px 20px;
+    background: #f7f8f5;
+
+    &-card {
+        width: 100%;
+        max-width: 550px;
+        background: #ffffff;
+        border-radius: 16px;
+        padding: 35px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    &-header {
+        text-align: center;
+        margin-bottom: 30px;
+
+        h2 {
+            margin: 0 0 8px;
+            font-size: 26px;
+        }
+
+        p {
+            margin: 0;
+            color: #777;
+            font-size: 14px;
+        }
+    }
+
+    &-form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    &-field {
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px 14px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+
+            &:focus {
+                border-color: #4caf50;
+            }
+        }
+    }
+
+    &-actions {
+        display: flex;
+        gap: 12px;
+        margin-top: 10px;
+
+        button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+    }
+
+    &-cancel {
+        background: #f1f1f1;
+        color: #333;
+
+        &:hover {
+            background: #e4e4e4;
+        }
+    }
+
+    &-save {
+        background: #4caf50;
+        color: #ffffff;
+
+        &:hover {
+            background: #43a047;
+        }
+    }
+}

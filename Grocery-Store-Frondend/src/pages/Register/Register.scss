@@ -1,0 +1,246 @@
+@use "../../styles/variable.scss" as *;
+
+.register-page {
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 40px;
+
+  background: linear-gradient(
+    135deg,
+    #e8f5e9,
+    #c8e6c9
+  );
+}
+
+.register-card {
+  width: 900px;
+  min-height: 600px;
+
+  display: flex;
+
+  background: $white;
+
+  border-radius: 20px;
+
+  overflow: hidden;
+
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+}
+
+
+
+.register-left {
+  width: 45%;
+
+  padding: 60px 45px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  background: linear-gradient(
+    160deg,
+    $primary-color,
+    $secondary-color
+  );
+
+  color: $white;
+
+  .brand {
+    font-size: 24px;
+    font-weight: 700;
+
+    margin-bottom: 50px;
+
+    img{
+            width: 30px;
+            height: 30px;
+    }
+  }
+
+  h1 {
+    font-size: 38px;
+    margin-bottom: 20px;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 1.6;
+
+    color: $white;
+  }
+
+  .benefits {
+    margin-top: 35px;
+
+    p {
+      margin: 12px 0;
+
+      font-size: 15px;
+    }
+  }
+}
+
+
+
+.register-right {
+  width: 55%;
+
+  padding: 50px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  h2 {
+    font-size: 30px;
+
+    color: #222;
+
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    color: #777;
+
+    margin-bottom: 25px;
+  }
+}
+
+
+
+form {
+  display: flex;
+  flex-direction: column;
+
+  gap: 16px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+
+  gap: 6px;
+
+  label {
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #333;
+  }
+
+  input {
+    padding: 12px 14px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 7px;
+
+    font-size: 14px;
+
+    transition: 0.2s;
+
+    &:focus {
+      outline: none;
+
+      border-color: $secondary-color;
+
+      box-shadow: 0 0 0 2px
+        rgba(67, 160, 71, 0.15);
+    }
+  }
+}
+
+
+
+button {
+  margin-top: 8px;
+
+  padding: 13px;
+
+  border: none;
+
+  border-radius: 7px;
+
+  background: $secondary-color;
+
+  color: white;
+
+  font-size: 16px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+
+  &:hover {
+    background: $primary-color;
+  }
+}
+
+
+
+.login-text {
+  margin-top: 20px;
+
+  text-align: center;
+
+  color: #777;
+
+  font-size: 14px;
+
+  a {
+    color: $primary-color;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+
+
+@media (max-width: 768px) {
+  .register-page {
+    padding: 20px;
+  }
+
+  .register-card {
+    width: 100%;
+
+    flex-direction: column;
+  }
+
+  .register-left,
+  .register-right {
+    width: 100%;
+  }
+
+  .register-left {
+    padding: 40px;
+
+    min-height: 300px;
+
+    .brand {
+      margin-bottom: 25px;
+    }
+
+    h1 {
+      font-size: 30px;
+    }
+  }
+
+  .register-right {
+    padding: 40px;
+  }
+}

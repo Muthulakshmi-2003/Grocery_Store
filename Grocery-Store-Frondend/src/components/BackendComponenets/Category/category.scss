@@ -1,0 +1,72 @@
+@use "../../../styles/variable.scss" as *;
+
+.category-grid {
+
+    display: grid;
+
+  grid-template-columns: repeat(6, 170px);
+
+    gap: 35px;
+    justify-content: center;
+}
+
+
+
+
+.category-card {
+
+    text-align: center;
+
+    cursor: pointer;
+
+    p {
+        margin-top: 10px;
+
+        font-size: 15px;
+
+        line-height: 1.4;
+
+        color: #333;
+    }
+}
+
+
+
+
+.category-image {
+
+    width: 170px;
+    height: 170px;
+
+    aspect-ratio: 1 / 1;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background-color: #f1f7ff;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    img {
+        width: 95%;
+        height: 95%;
+
+        object-fit: contain;
+    }
+}
+
+.category-card:hover {
+
+    .category-image {
+        transform: scale(1.03);
+    }
+
+    p {
+        color: $primary-color;
+    }
+}

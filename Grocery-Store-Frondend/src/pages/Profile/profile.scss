@@ -1,0 +1,105 @@
+.profile {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 50px 20px;
+    background: #f7f8f5;
+
+    &-card {
+        width: 100%;
+        max-width: 550px;
+        background: #ffffff;
+        border-radius: 16px;
+        padding: 35px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    &-header {
+        text-align: center;
+        margin-bottom: 30px;
+
+        h2 {
+            margin: 12px 0 5px;
+            font-size: 26px;
+        }
+
+        p {
+            margin: 0;
+            color: #777;
+            font-size: 14px;
+        }
+    }
+
+    &-avatar {
+        width: 75px;
+        height: 75px;
+        margin: 0 auto;
+        border-radius: 50%;
+        background: #f0f2ed;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        font-size: 32px;
+    }
+
+    &-details {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    &-field {
+        padding: 15px;
+        border: 1px solid #e5e5e5;
+        border-radius: 10px;
+
+        span {
+            display: block;
+            font-size: 13px;
+            color: #777;
+            margin-bottom: 6px;
+        }
+
+        p {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 500;
+        }
+    }
+
+    &-actions {
+        display: flex;
+        gap: 12px;
+        margin-top: 30px;
+
+        button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+    }
+
+    &-edit-btn {
+        background: #4caf50;
+        color: #ffffff;
+
+        &:hover {
+            background: #43a047;
+        }
+    }
+
+    &-logout-btn {
+        background: #f1f1f1;
+        color: #333;
+
+        &:hover {
+            background: #e4e4e4;
+        }
+    }
+}
