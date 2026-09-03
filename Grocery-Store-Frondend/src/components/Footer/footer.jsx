@@ -1,93 +1,73 @@
 import "./Footer.scss";
 
 function Footer() {
-    return (
-        <footer className="footer">
+  return (
+    <footer className="footer">
+      <div className="footer-container">
+        {/* Brand */}
+        <div className="footer-brand">
+          <h2> KitBlink Store</h2>
 
-            <div className="footer-container">
+          <p>
+            Fresh groceries delivered to your doorstep quickly and conveniently.
+          </p>
+        </div>
 
-                {/* Brand */}
-                <div className="footer-brand">
-                    <h2>  KitBlink Store
+        
+        <div className="footer-column">
+          <h3>Company</h3>
 
-                    </h2>
+          <a href="/about">About Us</a>
+          <a href="#">Contact Us</a>
+          <a href="#">Privacy Policy</a>
+        </div>
 
-                    <p>
-                        Fresh groceries delivered to your
-                        doorstep quickly and conveniently.
-                    </p>
-                </div>
+        
+        <div className="footer-column">
+          <h3>Useful Links</h3>
 
+          <a href="/">Home</a>
+          <a href="/profile">My Account</a>
+          <a href="/cart">Cart</a>
+          <a href="#">Help & Support</a>
+        </div>
 
-                {/* Company */}
-                <div className="footer-column">
-                    <h3>Company</h3>
+     
+        <div className="footer-column">
+          <h3>Categories</h3>
 
-                    <a href="#">About Us</a>
-                    <a href="#">Contact Us</a>
-                    <a href="#">Careers</a>
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms & Conditions</a>
-                </div>
+          <a href="/products?category=2">Vegetables</a>
+          <a href="/products?category=1">Fruits</a>
+          <a href="/products?category=3">Dairy Products</a>
+          <a href="/products?category=4">Packaged Foods</a>
+          <a href="/products?category=5">Beverages</a>
+          <a href="/products?category=6">Household Items</a>
+        </div>
 
+   
+        <div className="footer-app">
+          <h3>Download Our App</h3>
 
-                {/*  Links */}
-                <div className="footer-column">
-                    <h3>Useful Links</h3>
+          <button>Google Play</button>
 
-                    <a href="#">Home</a>
-                    <a href="#">My Account</a>
-                    <a href="#">My Orders</a>
-                    <a href="#">Cart</a>
-                    <a href="#">Help & Support</a>
-                </div>
+          <button>App Store</button>
 
+          <h3>Follow Us</h3>
 
-                {/* Categories */}
-                <div className="footer-column">
-                    <h3>Categories</h3>
+          <div className="footer-social">
+            <a href="#">Facebook</a>
+            <a href="#">Instagram</a>
+            <a href="#">Twitter</a>
+          </div>
+        </div>
+      </div>
 
-                    <a href="#">Vegetables</a>
-                    <a href="#">Fruits</a>
-                    <a href="#">Dairy Products</a>
-                    <a href="#">Beverages</a>
-                    <a href="#">Household Items</a>
-                </div>
-
-
-                {/* App */}
-                <div className="footer-app">
-
-                    <h3>Download Our App</h3>
-
-                    <button>Google Play</button>
-
-                    <button>App Store</button>
-
-                    <h3>Follow Us</h3>
-
-                    <div className="footer-social">
-                        <a href="#">Facebook</a>
-                        <a href="#">Instagram</a>
-                        <a href="#">Twitter</a>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            {/* copy rights */}
-            <div className="footer-bottom">
-
-                <p>
-                    © 2026 KitBlink Store. All rights reserved.
-                </p>
-
-            </div>
-
-        </footer>
-    );
+     
+      <div className="footer-bottom">
+        <p>© 2026 KitBlink Store. All rights reserved.</p>
+      </div>
+    </footer>
+  );
 }
 
 export default Footer;

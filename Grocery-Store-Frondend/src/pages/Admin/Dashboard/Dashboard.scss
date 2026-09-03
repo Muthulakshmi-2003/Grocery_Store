@@ -5,8 +5,8 @@
     min-height: 100vh;
     background: $white;
 
-    // Sidebar
-    &__sidebar {
+    
+    &-sidebar {
         width: 240px;
         min-height: 100vh;
         padding: 25px 20px;
@@ -41,15 +41,15 @@
         }
     }
 
-    // Main content
-    &__content {
+  
+    &-content {
         flex: 1;
         padding: 30px 40px;
         box-sizing: border-box;
     }
 
-    // Top section
-    &__top {
+   
+    &-top {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -89,7 +89,7 @@
 }
 
 
-// Individual card
+
 .dashboard-card {
     background: #ffffff;
     padding: 25px;
@@ -116,8 +116,6 @@
     }
 }
 
-
-// Responsive
 @media (max-width: 1000px) {
 
     .dashboard-cards {

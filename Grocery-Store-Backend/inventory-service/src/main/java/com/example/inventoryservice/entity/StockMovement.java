@@ -1,10 +1,7 @@
 package com.example.inventoryservice.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -12,6 +9,7 @@ import java.time.LocalDateTime;
 @Table(name = "stock_movements")
 @Builder
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 

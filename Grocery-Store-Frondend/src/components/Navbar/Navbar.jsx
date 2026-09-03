@@ -4,7 +4,6 @@ import { useState } from "react";
 import "./Navbar.scss";
 import shoppingBag from "../../assets/shopping-bag.png";
 import searchIcon from "../../assets/Search-icon.png";
-import userIcon from "../../assets/icons/userLogo.png";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -27,19 +26,16 @@ function Navbar() {
         </button>
 
         <a href="/">Home</a>
-        
+
         <Link to="/products">Products</Link>
-        <a href="/orders">Orders</a>
-     
+
         <Link to="/cart">Cart</Link>
         <div className="navbar-links">
           {isLoggedIn ? (
             <button
               className="navbar-user-icon"
               onClick={() => navigate("/profile")}
-            >
-              {/* <img src={userIcon} alt="UserIcon" /> */}
-            </button>
+            ></button>
           ) : (
             <Link to="/Login">Login</Link>
           )}

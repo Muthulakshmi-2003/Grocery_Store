@@ -3,70 +3,51 @@ import { useNavigate } from "react-router-dom";
 import "./Dashboard.scss";
 
 function Dashboard() {
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
+  return (
+    <div className="admin-dashboard">
+      <aside className="admin-dashboard-sidebar">
+        <h2>Grocery Admin</h2>
 
-    return (
-        <div className="admin-dashboard">
+        <button onClick={() => navigate("/admin/dashboard")}>Dashboard</button>
 
-            <aside className="admin-dashboard__sidebar">
+        <button onClick={() => navigate("/admin/products")}>Products</button>
 
-                <h2>Grocery Admin</h2>
+        <button>Logout</button>
+      </aside>
 
-                <button onClick={() => navigate("/admin/dashboard")}>
-                    Dashboard
-                </button>
+      <main className="admin-dashboard-content">
+        <div className="admin-dashboard-top">
+          <h1>Dashboard</h1>
 
-                <button onClick={() => navigate("/admin/products")}>
-                    Products
-                </button>
-
-                <button>
-                    Logout
-                </button>
-
-            </aside>
-
-
-            <main className="admin-dashboard__content">
-
-                 <div className="admin-dashboard__top">
-
-        <h1>Dashboard</h1>
-
-        <button
+          <button
             className="admin-profile-btn"
             onClick={() => navigate("/admin/dashboard")}
-        >
+          >
             👤 Admin
-        </button>
-
-    </div>
-
-                <div className="dashboard-cards">
-
-                    <div className="dashboard-card">
-                        <h3>Total Products</h3>
-                        <p>50+</p>
-                    </div>
-
-                    <div className="dashboard-card">
-                        <h3>Total Orders</h3>
-                        <p>500+</p>
-                    </div>
-
-                    <div className="dashboard-card">
-                        <h3>Total Customers</h3>
-                        <p>1000+</p>
-                    </div>
-
-
-                </div>
-
-            </main>
-
+          </button>
         </div>
-    );
+
+        <div className="dashboard-cards">
+          <div className="dashboard-card">
+            <h3>Total Products</h3>
+            <p>50+</p>
+          </div>
+
+          <div className="dashboard-card">
+            <h3>Total Orders</h3>
+            <p>500+</p>
+          </div>
+
+          <div className="dashboard-card">
+            <h3>Total Customers</h3>
+            <p>1000+</p>
+          </div>
+        </div>
+      </main>
+    </div>
+  );
 }
 
 export default Dashboard;

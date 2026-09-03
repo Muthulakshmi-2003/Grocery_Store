@@ -204,6 +204,8 @@ public class InventoryServiceImpl  implements InventoryService {
 
 
 
+
+
     private StockMovementResponse mapping(StockMovement stockMovement){
         return new StockMovementResponse(
                 stockMovement.getId(),
@@ -213,6 +215,8 @@ public class InventoryServiceImpl  implements InventoryService {
                 stockMovement.getCreatedAt()
         );
     }
+
+
 
 
 

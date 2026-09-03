@@ -3,105 +3,101 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
+function Dairy() {
+  const [dairy, setDairy] = useState([]);
+  const [showLoginPopup, setShowLoginPopup] = useState(false);
+  const [showCartPopup, setShowCartPopup] = useState(false);
 
+  useEffect(() => {
+    const fetchDairy = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:8085/products/category/3",
+        );
 
+        console.log("Products:", response.data);
 
-function Dairy(){
-     const [dairy, setDairy] = useState([]);
+        setDairy(response.data);
+      } catch (error) {
+        console.error("Error fetching vegetables:", error);
+      }
+    };
 
-    useEffect(() => {
+    fetchDairy();
+  }, []);
 
-        const fetchDairy = async () => {
-
-            try {
-
-                const response = await axios.get(
-                    "http://localhost:8085/products/category/3"
-                );
-
-                console.log("Products:", response.data);
-
-                setDairy(response.data);
-
-            } catch (error) {
-
-                console.error("Error fetching vegetables:", error);
-
-            }
-        };
-
-        fetchDairy();
-
-    }, []);
-
-    const handleAddToCart = (product) => {
-
+  const handleAddToCart = (product) => {
     const user = JSON.parse(localStorage.getItem("user"));
 
     if (!user || !user.email) {
-        alert("Please login to add products to cart.");
-        return;
+      setShowLoginPopup(true);
+      return;
     }
 
     const cartKey = `cart_${user.email}`;
 
-    const existingCart =
-        JSON.parse(localStorage.getItem(cartKey)) || [];
+    const existingCart = JSON.parse(localStorage.getItem(cartKey)) || [];
 
-    const existingProduct = existingCart.find(
-        item => item.id === product.id
-    );
+    const existingProduct = existingCart.find((item) => item.id === product.id);
 
     if (existingProduct) {
-
-        existingProduct.quantity += 1;
-
+      existingProduct.quantity += 1;
     } else {
-
-        existingCart.push({
-            ...product,
-            quantity: 1
-        });
-
+      existingCart.push({
+        ...product,
+        quantity: 1,
+      });
     }
 
-    localStorage.setItem(
-        cartKey,
-        JSON.stringify(existingCart)
-    );
+    localStorage.setItem(cartKey, JSON.stringify(existingCart));
 
-    alert("Added to cart!");
-};
-    const baseUrl = "/images/ProductJpg/";
-   
+    setShowCartPopup(true);
+  };
+  const baseUrl = "/images/ProductJpg/";
 
-    return (
-        <section className="product-section">
+  return (
+    <section className="product-section">
+      <div className="section-header">
+        <h2>Fresh Dairy Products</h2>
 
-            <div className="section-header">
-                <h2>Fresh Dairy Products</h2>
+        <Link to="/products?category=3">See All</Link>
+      </div>
 
-                 <Link to="/products?category=3">
-                    See All
-                </Link>
-            </div>
+      <div className="product-grid">
+        {dairy.slice(0, 4).map((product) => (
+          <div className="product-card" key={product.id}>
+            <img src={`${baseUrl}${product.name}.jpg`} alt={product.name} />
+            <h3>{product.name}</h3>
+            <p>{product.quantity}</p>
+            <strong>₹{product.price}</strong>
+            <button onClick={() => handleAddToCart(product)}>Add</button>
+          </div>
+        ))}
+      </div>
+      {showLoginPopup && (
+        <div className="login-popup-overlay">
+          <div className="login-popup">
+            <h3>Login Required</h3>
 
-            <div className="product-grid">
+            <p>Please login to add products to cart.</p>
 
-                {dairy.slice(0, 4).map((product) => (
-    <div className="product-card" key={product.id}>
-        <img src={`${baseUrl}${product.name}.jpg`} alt={product.name} />
-        <h3>{product.name}</h3>
-        <p>{product.quantity}</p>
-        <strong>₹{product.price}</strong>
-        <button onClick={()=>handleAddToCart(product)}>Add</button>
-    </div>
-))}
+            <button onClick={() => setShowLoginPopup(false)}>OK</button>
+          </div>
+        </div>
+      )}
+      {showCartPopup && (
+        <div className="login-popup-overlay">
+          <div className="login-popup">
+            <h3>Add to Cart</h3>
 
-            </div>
+            <p>Your Product is added to the cart!!.</p>
 
-        </section>
-    );
+            <button onClick={() => setShowCartPopup(false)}>OK</button>
+          </div>
+        </div>
+      )}
+    </section>
+  );
 }
 
 export default Dairy;

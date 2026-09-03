@@ -4,102 +4,101 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 function Vegetables() {
+  const [vegetables, setVegetables] = useState([]);
+  const [showLoginPopup, setShowLoginPopup] = useState(false);
+  const [showCartPopup, setShowCartPopup] = useState(false);
 
-    const [vegetables, setVegetables] = useState([]);
+  useEffect(() => {
+    const fetchVegetables = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:8085/products/category/2",
+        );
 
-    useEffect(() => {
+        console.log("Products:", response.data);
 
-        const fetchVegetables = async () => {
+        setVegetables(response.data);
+      } catch (error) {
+        console.error("Error fetching vegetables:", error);
+      }
+    };
 
-            try {
+    fetchVegetables();
+  }, []);
 
-                const response = await axios.get(
-                    "http://localhost:8085/products/category/2"
-                );
-
-                console.log("Products:", response.data);
-
-                setVegetables(response.data);
-
-            } catch (error) {
-
-                console.error("Error fetching vegetables:", error);
-
-            }
-        };
-
-        fetchVegetables();
-
-    }, []);
-
-    const handleAddToCart = (product) => {
-
+  const handleAddToCart = (product) => {
     const user = JSON.parse(localStorage.getItem("user"));
 
     if (!user || !user.email) {
-        alert("Please login to add products to cart.");
-        return;
+      setShowLoginPopup(true);
+      return;
     }
 
     const cartKey = `cart_${user.email}`;
 
-    const existingCart =
-        JSON.parse(localStorage.getItem(cartKey)) || [];
+    const existingCart = JSON.parse(localStorage.getItem(cartKey)) || [];
 
-    const existingProduct = existingCart.find(
-        item => item.id === product.id
-    );
+    const existingProduct = existingCart.find((item) => item.id === product.id);
 
     if (existingProduct) {
-
-        existingProduct.quantity += 1;
-
+      existingProduct.quantity += 1;
     } else {
-
-        existingCart.push({
-            ...product,
-            quantity: 1
-        });
-
+      existingCart.push({
+        ...product,
+        quantity: 1,
+      });
     }
 
-    localStorage.setItem(
-        cartKey,
-        JSON.stringify(existingCart)
-    );
+    localStorage.setItem(cartKey, JSON.stringify(existingCart));
 
-    alert("Added to cart!");
-};
-    const baseUrl = "/images/ProductJpg/";
+    setShowCartPopup(true);
+  };
+  const baseUrl = "/images/ProductJpg/";
 
-    return (
-        <section className="product-section">
+  return (
+    <section className="product-section">
+      <div className="section-header">
+        <h2>Fresh Vegetables</h2>
 
-            <div className="section-header">
+        <Link to="/products?category=2">See All</Link>
+      </div>
 
-                <h2>Fresh Vegetables</h2>
+      <div className="product-grid">
+        {vegetables.slice(0, 4).map((product) => (
+          <div className="product-card" key={product.id}>
+            <img src={`${baseUrl}${product.name}.jpg`} alt={product.name} />
+            <h3>{product.name}</h3>
+            <p>{product.quantity}</p>
+            <strong>₹{product.price}</strong>
+            <button onClick={() => handleAddToCart(product)}>Add</button>
+          </div>
+        ))}
+      </div>
+      {showLoginPopup && (
+        <div className="login-popup-overlay">
+          <div className="login-popup">
+            <h3>Login Required</h3>
 
-                <Link to="/products?category=2">
-                    See All
-                </Link>
+            <p>Please login to add products to cart.</p>
 
-            </div>
+            <button onClick={() => setShowLoginPopup(false)}>OK</button>
+          </div>
+        </div>
+      )}
 
-            <div className="product-grid">
+      {showCartPopup && (
+        <div className="login-popup-overlay">
+          <div className="login-popup">
+            <h3>Add to Cart</h3>
 
-                {vegetables.slice(0, 4).map((product) => (
-    <div className="product-card" key={product.id}>
-        <img src={`${baseUrl}${product.name}.jpg`} alt={product.name} />
-        <h3>{product.name}</h3>
-        <p>{product.quantity}</p>
-        <strong>₹{product.price}</strong>
-        <button onClick={()=>handleAddToCart(product)}>Add</button>
-    </div>
-))}
-            </div>
+            <p>Your Product is added to the cart!!.</p>
 
-        </section>
-    );
+            <button onClick={() => setShowCartPopup(false)}>OK</button>
+          </div>
+        </div>
+      )}
+    </section>
+  );
 }
 
 export default Vegetables;

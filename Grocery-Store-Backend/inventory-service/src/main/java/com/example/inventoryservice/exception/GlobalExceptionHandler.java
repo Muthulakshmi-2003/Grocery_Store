@@ -1,5 +1,6 @@
 package com.example.inventoryservice.exception;
 
+import com.example.inventoryservice.Constant.TimeConstant;
 import com.example.inventoryservice.dto.ErrorResponseDto;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
@@ -13,29 +14,29 @@ import java.time.LocalDateTime;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(IllegalArugumentException.class)
-    public ResponseEntity<ErrorResponseDto> handleIllegal(
+    public ResponseEntity<ErrorResponseDto> handleIllegalArgumentException(
             IllegalArugumentException ex,
             HttpServletRequest request)
     {
         ErrorResponseDto response = ErrorResponseDto.builder()
-                .timestamp(LocalDateTime.now().toString())
-                .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
-                .error(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase())
+                .timestamp(LocalDateTime.now(TimeConstant.INDIA_ZONE).toString())
+                .status(HttpStatus.BAD_REQUEST.value())
+                .error(HttpStatus.BAD_REQUEST.getReasonPhrase())
                 .message(ex.getMessage())
                 .path(request.getRequestURI())
                 .build();
 
-        return new ResponseEntity<>(response,HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(response,HttpStatus.BAD_REQUEST);
 
     }
 
     @ExceptionHandler(InsufficientStockException.class)
-    public ResponseEntity<ErrorResponseDto> InsufficientException(
+    public ResponseEntity<ErrorResponseDto> insufficientException(
             InsufficientStockException ex,
             HttpServletRequest request)
     {
         ErrorResponseDto response = ErrorResponseDto.builder()
-                .timestamp(LocalDateTime.now().toString())
+                .timestamp(LocalDateTime.now(TimeConstant.INDIA_ZONE).toString())
                 .status(HttpStatus.CONFLICT.value())
                 .error(HttpStatus.CONFLICT.getReasonPhrase())
                 .message(ex.getMessage())
@@ -46,12 +47,12 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(InventoryNotFoundException.class)
-    public ResponseEntity<ErrorResponseDto> InventoryNotFound(
+    public ResponseEntity<ErrorResponseDto> inventoryNotFound(
             InventoryNotFoundException ex,
             HttpServletRequest request)
     {
         ErrorResponseDto response = ErrorResponseDto.builder()
-                .timestamp(LocalDateTime.now().toString())
+                .timestamp(LocalDateTime.now(TimeConstant.INDIA_ZONE).toString())
                 .status(HttpStatus.NOT_FOUND.value())
                 .error(HttpStatus.NOT_FOUND.getReasonPhrase())
                 .message(ex.getMessage())
@@ -63,12 +64,12 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(StockMovementNotFound.class)
-    public ResponseEntity<ErrorResponseDto> StockeMovemntNotFound(
+    public ResponseEntity<ErrorResponseDto> stockeMovemntNotFound(
             StockMovementNotFound ex,
             HttpServletRequest request)
     {
         ErrorResponseDto response = ErrorResponseDto.builder()
-                .timestamp(LocalDateTime.now().toString())
+                .timestamp(LocalDateTime.now(TimeConstant.INDIA_ZONE).toString())
                 .status(HttpStatus.NOT_FOUND.value())
                 .error(HttpStatus.NOT_FOUND.getReasonPhrase())
                 .message(ex.getMessage())
@@ -80,12 +81,12 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(InventoryAlreadyExists.class)
-    public ResponseEntity<ErrorResponseDto> InventoryAlreadyExists(
+    public ResponseEntity<ErrorResponseDto> inventoryAlreadyExists(
             InventoryAlreadyExists ex,
             HttpServletRequest request)
     {
         ErrorResponseDto response = ErrorResponseDto.builder()
-                .timestamp(LocalDateTime.now().toString())
+                .timestamp(LocalDateTime.now(TimeConstant.INDIA_ZONE).toString())
                 .status(HttpStatus.CONFLICT.value())
                 .error(HttpStatus.CONFLICT.getReasonPhrase())
                 .message(ex.getMessage())
@@ -95,12 +96,12 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(response,HttpStatus.CONFLICT);
     }
     @ExceptionHandler(InvalidQuantityException.class)
-    public ResponseEntity<ErrorResponseDto> InvalidQuantityException(
+    public ResponseEntity<ErrorResponseDto> invalidQuantityException(
             InvalidQuantityException ex,
             HttpServletRequest request)
     {
         ErrorResponseDto response = ErrorResponseDto.builder()
-                .timestamp(LocalDateTime.now().toString())
+                .timestamp(LocalDateTime.now(TimeConstant.INDIA_ZONE).toString())
                 .status(HttpStatus.BAD_REQUEST.value())
                 .error(HttpStatus.BAD_REQUEST.getReasonPhrase())
                 .message(ex.getMessage())

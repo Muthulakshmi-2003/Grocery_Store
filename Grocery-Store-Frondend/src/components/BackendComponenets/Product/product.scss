@@ -6,11 +6,29 @@
         margin-bottom: 10px;
     }
 
+   
+
     > p {
         text-align: center;
         color: #666;
         margin-bottom: 30px;
     }
+
+    &-filter{
+         
+    padding: 8px 12px;
+    border: 1px solid #f8f7f7;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+    
+    select:focus{
+        border-color: #1b5e20;
+    }
+
+    }
+    
 
     &-grid {
         display: grid;
@@ -67,4 +85,49 @@
             }
         }
     }
+}
+.login-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.5);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 1000;
+}
+
+.login-popup {
+    background: white;
+    width: 350px;
+
+    padding: 30px;
+    border-radius: 12px;
+
+    text-align: center;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.login-popup h3 {
+    margin-bottom: 10px;
+}
+
+.login-popup p {
+    margin-bottom: 20px;
+}
+
+.login-popup button {
+    padding: 10px 30px;
+
+    border: none;
+    border-radius: 6px;
+
+    cursor: pointer;
 }

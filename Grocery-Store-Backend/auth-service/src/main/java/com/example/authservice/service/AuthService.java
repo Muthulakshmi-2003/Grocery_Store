@@ -1,5 +1,6 @@
 package com.example.authservice.service;
 
+import com.example.authservice.constant.MessageConstant;
 import com.example.authservice.dto.*;
 import com.example.authservice.entity.User;
 import com.example.authservice.exception.EmailAlreadyExistException;
@@ -33,7 +34,7 @@ public class AuthService {
     public String register(RegisterRequest request) {
 
         if (userRepository.existsByEmail(request.getEmail())) {
-            throw new EmailAlreadyExistException();
+            throw new EmailAlreadyExistException(MessageConstant.Email_Already_Exists);
         }
 
         User user = User.builder()
@@ -54,8 +55,8 @@ public class AuthService {
 
         User user = userRepository
                 .findByEmail(request.getEmail())
-                .orElseThrow(() ->
-                        new EmailAlreadyExistException());
+                .orElseThrow(() -> new EmailAlreadyExistException(MessageConstant.Email_Already_Exists));
+
 
         if (!passwordEncoder.matches(
                 request.getPassword(),

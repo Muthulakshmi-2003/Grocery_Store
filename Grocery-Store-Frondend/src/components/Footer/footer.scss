@@ -2,13 +2,13 @@
 
 .footer {
     margin-top: 60px;
-    background-color: #f7f7f7;
+    background-color:$secondary-color;
     border-top: 1px solid #e5e5e5;
     transition: background-color 0.3s ease;
 
       &:hover {
-        background-color: #8c9a8d ;
-        color: $white;
+        background-color: rgb(151, 206, 184) ;
+        color: black;
     }
 
     &-container {
